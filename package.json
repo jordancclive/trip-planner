@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "DATABASE_URL=postgres://localhost/trip_planner nodemon server.js"
+    "start:dev": "DATABASE_URL=postgres://localhost/trip_planner nodemon -e html,css,js server.js"
   },
   "keywords": [],
   "author": "",
@@ -13,8 +13,12 @@
   "dependencies": {
     "body-parser": "^1.16.1",
     "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1",
     "nunjucks": "^3.0.0",
     "path": "^0.12.7",
     "sequelize": "^3.30.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }

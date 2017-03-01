@@ -1,13 +1,11 @@
 const db = require('./_db');
 
-const Place = db.define('activity', {
+const Place = db.define('place', {
   address: db.Sequelize.STRING,
   city: db.Sequelize.STRING,
   state: db.Sequelize.STRING,
   phone: db.Sequelize.STRING,
-  latitude: db.Sequelize.FLOAT,
-  longitude: db.Sequelize.FLOAT
-  // location: ?
+  location: db.Sequelize.ARRAY(db.Sequelize.FLOAT)
 })
 
 module.exports = Place

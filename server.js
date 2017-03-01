@@ -3,6 +3,9 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
 const path = require('path');
+const models = require('./models');
+
+
 const app = express();
 
 app.set('view engine', 'html');
@@ -14,23 +17,26 @@ app.use(bodyParser.urlencoded({
   extended:true
 }))
 app.use(bodyParser.json());
-app.use('/vendor', express.static(path.join(__dirname, '/node_modules/bootstrap/')));
+app.use('/cssvendor', express.static(path.join(__dirname, '/node_modules/bootstrap/')));
+app.use('/jsvendor', express.static(path.join(__dirname, '/node_modules/jquery/')));
 app.use(function(err,req,res,next){
   console.error(err)
   next();
 })
 
 app.get('/', (req,res,next) => {
-  res.render('index');
+  Promise.all([models.Hotel.findAll(),models.Restaurant.findAll(),models.Activity.findAll()])
+  .then( (result) => {
+    res.render('index',{hotels: result[0], restaurants: result[1], activities: result[2]});
+  })
 
 })
 
 const port = process.env.PORT || 4000;
-const db = require('./db');
 
-db.sync()
-  .then(()=>{
-    console.log(`DB is synced.`);
+models.seed()
+  .then( () =>{
+    console.log(`DB seeded.`);
   });
 
 app.listen(port, ()=> console.log(`Server listening on ${port}`));

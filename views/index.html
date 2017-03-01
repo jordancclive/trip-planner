@@ -1,1 +1,24 @@
-Yo dudes.
+{% extends './layout.html' %}
+
+{% block content %}
+<div class="nav navbar">
+</div>
+<label for="Hotels">Hotels</label>
+<select class="" name="Hotels">
+  {% for hotel in hotels %}
+    <option value="{{hotel.id}}">{{hotel.name}}</option>
+  {% endfor%}
+</select>
+<label for="Restaurants">Restaurants</label>
+<select class="" name="Restaurants">
+  {% for restaurant in restaurants %}
+    <option value="{{restaurant.id}}">{{restaurant.name}}</option>
+  {% endfor%}
+</select>
+<label for="Activities">Activities</label>
+<select class="" name="Activities">
+  {% for activity in activities %}
+    <option value="{{activity.id}}">{{activity.name}}</option>
+  {% endfor%}
+</select>
+{% endblock %}
