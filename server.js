@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use('/cssvendor', express.static(path.join(__dirname, '/node_modules/bootstrap/')));
 app.use('/jsvendor', express.static(path.join(__dirname, '/node_modules/jquery/')));
+app.use('/media/', express.static(path.join(__dirname, '/media/')));
 app.use(function(err,req,res,next){
   console.error(err)
   next();

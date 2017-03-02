@@ -1,62 +1,80 @@
-{% extends './layout.html' %}
+{% extends './layout.html' %} {% block content %} {% include "_navbar.html" %}
 
-{% block content %}
-<div class="nav navbar">
-
-</div>
-<div class="container">
   <div class="row">
     <div class="col-sm-9">
-      <div id="map-canvas" style="height:600px;">
+      <div id="map-canvas" style="height:500px;">
       </div>
     </div>
     <div class="col-sm-3">
       <label for="Hotels">Hotels</label>
-      <select class="" name="Hotels">
-        {% for hotel in hotels %}
-          <option value="{{hotel.id}}">{{hotel.name}}</option>
-        {% endfor%}
-      </select>
-      <label for="Restaurants">Restaurants</label>
-      <select class="" name="Restaurants">
-        {% for restaurant in restaurants %}
-          <option value="{{restaurant.id}}">{{restaurant.name}}</option>
-        {% endfor%}
-      </select>
-      <label for="Activities">Activities</label>
-      <select class="" name="Activities">
-        {% for activity in activities %}
-          <option value="{{activity.id}}">{{activity.name}}</option>
-        {% endfor%}
-      </select>
-    </div>
-  </div>
-</div>
-<script>
-function initialize_gmaps() {
-  // initialize new google maps LatLng object
-  var myLatlng = new google.maps.LatLng(40.705189,-74.009209);
-  // set the map options hash
-  var mapOptions = {
-      center: myLatlng,
-      zoom: 16,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-  // get the maps div's HTML obj
-  var map_canvas_obj = document.getElementById("map-canvas");
-  // initialize a new Google Map with the options
-  var map = new google.maps.Map(map_canvas_obj, mapOptions);
-  // Add the marker to the map
-  var marker = new google.maps.Marker({
-      position: myLatlng,
-      title:"Hello World!"
-  });
-  // Add the marker to the map by calling setMap()
-  marker.setMap(map);
-}
+      <div class="row">
+        <div class="col-xs-9">
+          <div class="form-group">
+            <select class="form-control" name="Hotels">
+            {% for hotel in hotels %}
+              <option value="{{hotel.id}}">{{hotel.name}}</option>
+            {% endfor%}
+          </select>
+          </div>
+        </div>
+        <div class="col-xs-3">
+          <button class="btn btn-default btn-circle"><i class="glyphicon glyphicon-ok"></i></button>
+        </div>
+      </div>
 
-$(document).ready(function() {
-    initialize_gmaps();
-});
-</script>
-{% endblock %}
+      <label for="Restaurants">Restaurants</label>
+       <div class="row">
+        <div class="col-xs-9">
+          <div class="form-group">
+            <select class="form-control" name="Restaurants">
+              {% for restaurant in restaurants %}
+              <option value="{{restaurant.id}}">{{restaurant.name}}</option>
+              {% endfor%}
+            </select>
+          </div>
+        </div>
+        <div class="col-xs-3">
+          <button class="btn btn-default btn-circle"><i class="glyphicon glyphicon-ok"></i></button>
+        </div>
+      </div>
+
+      <label for="Activities">Activities</label>
+      <div class="row">
+        <div class="col-xs-9">      
+          <div class="form-group">
+            <select class="form-control" name="Activities">
+            {% for activity in activities %}
+              <option value="{{activity.id}}">{{activity.name}}</option>
+            {% endfor%}
+            </select>
+          </div>
+        </div>
+        <div class="col-xs-3">
+          <button class="btn btn-default btn-circle"><i class="glyphicon glyphicon-ok"></i></button>
+        </div>
+      </div>
+
+      <hr style="border:0px solid #fff;border-bottom:1px solid #c9c9c9" />
+     <h3>My Plan</h3>
+       <div class="row">
+        <div class="col-xs-5">     
+          <select class="form-control" name="Day">
+            <option>Day 2</option>
+            <option> Day 3</option>
+          </select>
+        </div>
+       </div>
+
+      
+
+      <h4>Hotel</h4>
+      Andaz Wall Street <button type="button" class="btn btn-default btn-xs btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
+      <h4>Restaurant</h4>
+      Delmonico's <button type="button" class="btn btn-default btn-xs btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
+      <h4>Activites</h4>
+      Ground Zero <button type="button" class="btn btn-default btn-xs btn-circle"><i class="glyphicon glyphicon-remove"></i></button><br>
+      South Street Seaport <button type="button" class="btn btn-default btn-xs btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
+
+  </div>
+  <script src="/media/js/map.js"></script>
+  {% endblock %}
