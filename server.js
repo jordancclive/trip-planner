@@ -5,7 +5,6 @@ const nunjucks = require('nunjucks');
 const path = require('path');
 const models = require('./models');
 
-
 const app = express();
 
 app.set('view engine', 'html');
@@ -27,9 +26,9 @@ app.use(function(err,req,res,next){
 app.get('/', (req,res,next) => {
   Promise.all([models.Hotel.findAll(),models.Restaurant.findAll(),models.Activity.findAll()])
   .then( (result) => {
+    console.log('I have all the data, I am rendering');
     res.render('index',{hotels: result[0], restaurants: result[1], activities: result[2]});
   })
-
 })
 
 const port = process.env.PORT || 4000;
