@@ -1,15 +1,15 @@
 const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const nunjucks = require('nunjucks');
+const swig = require('swig');
 const path = require('path');
 const models = require('./models');
 
 const app = express();
 
 app.set('view engine', 'html');
-app.engine('html', nunjucks.render);
-nunjucks.configure('views', { noCache: true })
+app.engine('html', swig.renderFile);
+swig.setDefaults('views', { noCache: true })
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({
@@ -25,7 +25,7 @@ app.use(function(err,req,res,next){
 })
 
 app.get('/', (req,res,next) => {
-  Promise.all([models.Hotel.findAll(),models.Restaurant.findAll(),models.Activity.findAll()])
+  Promise.all([models.Hotel.findAll(),models.Restaurant.findAll({ include: models.Place }),models.Activity.findAll()])
   .then( (result) => {
     console.log('I have all the data, I am rendering');
     res.render('index',{hotels: result[0], restaurants: result[1], activities: result[2]});

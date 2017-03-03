@@ -76,5 +76,10 @@
       South Street Seaport <button type="button" class="btn btn-default btn-xs btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
 
   </div>
+  <script>
+    var restaurants = {{ restaurants | raw | json }}
+  </script>
+
   <script src="/media/js/map.js"></script>
+
   {% endblock %}
