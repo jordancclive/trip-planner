@@ -1,5 +1,5 @@
-{% extends './layout.html' %} {% block content %} {% include "_navbar.html" %}
-
+{% extends './layout.html' %}
+{% block content %}
   <div class="row">
     <div class="col-sm-9">
       <div id="map-canvas" style="height:500px;">
@@ -40,7 +40,7 @@
 
       <label for="Activities">Activities</label>
       <div class="row">
-        <div class="col-xs-9">      
+        <div class="col-xs-9">
           <div class="form-group">
             <select class="form-control" name="Activities">
             {% for activity in activities %}
@@ -57,7 +57,7 @@
       <hr style="border:0px solid #fff;border-bottom:1px solid #c9c9c9" />
      <h3>My Plan</h3>
        <div class="row">
-        <div class="col-xs-5">     
+        <div class="col-xs-5">
           <select class="form-control" name="Day">
             <option>Day 2</option>
             <option> Day 3</option>
@@ -65,7 +65,7 @@
         </div>
        </div>
 
-      
+
 
       <h4>Hotel</h4>
       Andaz Wall Street <button type="button" class="btn btn-default btn-xs btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
